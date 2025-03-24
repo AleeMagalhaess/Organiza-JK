@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link rel="stylesheet" href="prototipo1.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Horários</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f4; }
+        .container { background: white; padding: 20px; border-radius: 8px; width: 80%; margin: auto; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; display: none; }
+        th, td { border: 1px solid black; padding: 8px; text-align: center; }
+        th { background-color: #4CAF50; color: white; }
+        .break { background-color: #4CAF50; color: white; font-weight: bold; }
+        button { padding: 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer; margin: 5px; }
+        button:hover { background-color: #45a049; }
+    </style>
+</head>
+<header>
+    <img src="logositeorganizajk.jpg" alt="Organiza JK" width="150" height="150">
+</header>
+<body>
+    <div class="container">
+        <h2>Gerador de Horários</h2>
+        <div>
+            <label for="professor">Professor:</label><br>
+            <input type="text" id="professor" placeholder="Nome do professor">
+        </div>
+        <div>
+            <label for="materia">Matéria:</label><br>
+            <input type="text" id="materia" placeholder="Matéria">
+        </div>
+        <h4>Horários Disponíveis:</h4>
+        <label><input type="checkbox" value="7:00-8:40"> 7:00 - 8:40</label>
+        <label><input type="checkbox" value="8:50-10:30"> 8:50 - 10:30</label>
+        <label><input type="checkbox" value="10:30-12:00"> 10:30 - 12:00</label>
+        <label><input type="checkbox" value="13:00-14:30"> 13:00 - 14:30</label>
+        <label><input type="checkbox" value="14:30-16:00"> 14:30 - 16:00</label>
+        <label><input type="checkbox" value="16:10-18:00"> 16:10 - 18:00</label>
+        
+        <h4>Dias Disponíveis:</h4>
+        <label><input type="checkbox" value="Segunda"> Segunda</label>
+        <label><input type="checkbox" value="Terça"> Terça</label>
+        <label><input type="checkbox" value="Quarta"> Quarta</label>
+        <label><input type="checkbox" value="Quinta"> Quinta</label>
+        <label><input type="checkbox" value="Sexta"> Sexta</label>
+        <label><input type="checkbox" value="Sábado"> Sábado</label>
+
+        <div>
+            <button onclick="adicionarProfessor()">Adicionar</button>
+            <button onclick="gerarHorario()">Gerar Horário</button>
+        </div>
+
+        <table id="tabela-horarios">
+            <thead>
+                <tr>
+                    <th>Horário</th>
+                    <th>Segunda</th>
+                    <th>Terça</th>
+                    <th>Quarta</th>
+                    <th>Quinta</th>
+                    <th>Sexta</th>
+                    <th>Sábado</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <script>
+        let professores = [];
+
+        function adicionarProfessor() {
+            const professor = document.getElementById("professor").value;
+            const materia = document.getElementById("materia").value;
+            const checkboxes = [...document.querySelectorAll("input[type=checkbox]:checked")];
+            const horarios = checkboxes.map(cb => cb.value);
+            
+            const diasSemana = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+            const dias = horarios.filter(h => diasSemana.includes(h));
+            const horas = horarios.filter(h => !dias.includes(h));
+
+            // Verifica se já existe um professor com a mesma matéria
+            const materiaExistente = professores.some(p => p.materia === materia);
+            if (materiaExistente) {
+                alert("Já temos um professor desta matéria nessa turma.");
+                return; // Interrompe a função
+            }
+
+            if (professor && materia && horas.length && dias.length) {
+                professores.push({ professor, materia, horarios: horas, dias: dias });
+                alert("Professor adicionado com sucesso!");
+            } else {
+                alert("Preencha todos os campos corretamente.");
+            }
+        }
+
+        function gerarHorario() {
+            if (professores.length === 0) {
+                alert("Não há professores cadastrados. Adicione pelo menos um professor para gerar o horário.");
+                return; // Interrompe a execução da função
+            }
+
+            const tabela = document.getElementById("tabela-horarios").querySelector("tbody");
+            tabela.innerHTML = "";
+
+            const horarios = [
+                "7:00-8:40", 
+                "8:50-10:30", 
+                "10:30-12:00", 
+                "13:00-14:30", 
+                "14:30-16:00", 
+                "16:10-18:00"
+            ];
+            const dias = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+
+            let distribuicao = {};
+
+            for (let i = 0; i < horarios.length; i++) {
+                if (i === 1) {
+                    tabela.innerHTML += `<tr class="break"><td colspan="7">INTERVALO</td></tr>`;
+                }
+                if (i === 3) {
+                    tabela.innerHTML += `<tr class="break"><td colspan="7">ALMOÇO</td></tr>`;
+                }
+                if (i === 5) {
+                    tabela.innerHTML += `<tr class="break"><td colspan="7">INTERVALO</td></tr>`;
+                }
+
+                let horario = horarios[i];
+                let linha = `<tr><td>${horario}</td>`;
+
+                for (let dia of dias) {
+                    let candidato = professores.find(p => 
+                        p.horarios.includes(horario) && 
+                        p.dias.includes(dia) && 
+                        !Object.values(distribuicao).includes(p.materia)
+                    );
+
+                    if (candidato) {
+                        distribuicao[`${dia}-${horario}`] = candidato.materia;
+                        linha += `<td>${candidato.professor} - ${candidato.materia}</td>`;
+                    } else {
+                        linha += "<td></td>";
+                    }
+                }
+                linha += "</tr>";
+                tabela.innerHTML += linha;
+            }
+
+            document.getElementById("tabela-horarios").style.display = "table";
+        }
+    </script>
+</body>
+</html>
