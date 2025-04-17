@@ -14,7 +14,7 @@ CREATE TABLE notas (
     aluno_id INT NOT NULL,
     disciplina VARCHAR(50) NOT NULL,
     nota DECIMAL(4,2) NOT NULL,
-    bimestre INT NOT NULL,
+    trimestre INT NOT NULL,
     FOREIGN KEY (aluno_id) REFERENCES alunos(id)
 );
 

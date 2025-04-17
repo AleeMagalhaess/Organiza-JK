@@ -2,7 +2,7 @@
 $host = 'localhost';
 $db   = 'sistema_escolar';
 $user = 'root';
-$password = '30131011r';
+$password = 'jk123456';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
