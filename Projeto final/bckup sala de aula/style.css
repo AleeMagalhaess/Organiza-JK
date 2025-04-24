@@ -1,0 +1,282 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f4f8; /* Light blue/gray background */
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+header {
+    background-color: #ffffff; /* White header */
+    padding: 15px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-bottom: 3px solid #4285f4; /* Google Blue accent */
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    color: #4285f4; /* Google Blue */
+    font-size: 1.8em;
+}
+
+header h1 i {
+    margin-right: 10px;
+}
+
+header nav button.header-btn {
+    background-color: #4285f4; /* Google Blue */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+header nav button.header-btn i {
+    margin-right: 5px;
+}
+
+header nav button.header-btn:hover {
+    background-color: #3367d6; /* Darker Blue */
+}
+
+/* Main Content */
+main {
+    padding: 30px 0;
+}
+
+main h2 {
+    color: #1a73e8; /* Another shade of blue */
+    margin-bottom: 20px;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+
+/* Classroom Grid */
+.classroom-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.classroom-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease;
+    border: 1px solid #dcdcdc;
+}
+
+.classroom-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.classroom-card.placeholder {
+    border-style: dashed;
+    color: #aaa;
+}
+.classroom-card.placeholder .card-header {
+    background-color: #e8f0fe; /* Lighter blue for header */
+}
+
+
+.card-header {
+    background-color: #4285f4; /* Blue header */
+    color: white;
+    padding: 15px 20px;
+}
+.card-header h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.3em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.card-header span {
+    font-size: 0.9em;
+    opacity: 0.9;
+}
+
+.card-body {
+    padding: 20px;
+    flex-grow: 1; /* Makes body take available space */
+    min-height: 80px; /* Ensure minimum height */
+    color: #5f6368;
+}
+
+.card-footer {
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    border-top: 1px solid #e0e0e0;
+    font-size: 0.9em;
+    color: #5f6368;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.card-footer span {
+    font-weight: 500;
+}
+
+/* Modals */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Dim background */
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+     from { transform: translateY(-30px); opacity: 0; }
+     to { transform: translateY(0); opacity: 1; }
+}
+
+.close-btn {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #333;
+    text-decoration: none;
+}
+
+.modal h2 {
+    margin-top: 0;
+    color: #4285f4;
+}
+
+.modal form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+.modal form input[type="text"] {
+    width: calc(100% - 22px); /* Account for padding */
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.modal form button[type="submit"] {
+    background-color: #4285f4;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.modal form button[type="submit"]:hover {
+    background-color: #3367d6;
+}
+
+.modal .info {
+    font-size: 0.9em;
+    color: #5f6368;
+    margin-top: 15px;
+    text-align: center;
+}
+
+/* Specific styles for Success Modal */
+.modal-content.success-content {
+    text-align: center;
+}
+
+.modal-content.success-content h2 {
+    color: #34a853; /* Google Green for success */
+    margin-bottom: 15px;
+}
+
+.modal-content.success-content h2 i {
+    margin-right: 8px;
+}
+
+.modal-content.success-content p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.modal-content.success-content .info {
+    font-size: 0.9em;
+    color: #5f6368;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    font-weight: bold;
+    background-color: #f1f3f4;
+    padding: 8px;
+    border-radius: 4px;
+    display: inline-block; /* Make background fit content */
+}
+
+.modal-content.success-content .ok-btn {
+    background-color: #4285f4;
+    color: white;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.modal-content.success-content .ok-btn:hover {
+    background-color: #3367d6;
+}
