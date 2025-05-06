@@ -15,7 +15,7 @@ if (!isset($_SESSION['usuario_id']) && isset($_COOKIE['lembrar'])) {
     $host = 'localhost';
     $dbname = 'sistema_cadastro';
     $username = 'root';
-    $password = '';
+    $password = 'jk123456';
     
     try {
         $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);

