@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organiza JK</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" href="assets/images/organiza_jk_icon.png" type="image/png">
+</head>
+<body>
+    <header>
+        <img src="assets/images/organiza_jk_icon.png" alt="Organiza JK Icon" id="header-icon">
+        <h1>Organiza JK</h1>
+    </header>
+
+    <main>
+        <section id="teacher-input-section">
+            <h2>Adicionar Professor</h2>
+            <form id="add-teacher-form">
+                <div>
+                    <label for="class-selector">Turma:</label>
+                    <select id="class-selector" name="class-selector">
+                        <option value="">Selecione uma turma...</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="teacher-name">Nome do Professor:</label>
+                    <input type="text" id="teacher-name" name="teacher-name" required>
+                </div>
+                <div>
+                    <label for="subject">Matéria:</label>
+                    <input type="text" id="subject" name="subject" required list="subjects-datalist">
+                    <datalist id="subjects-datalist"></datalist>
+                </div>
+                
+                <fieldset>
+                    <legend>Dias Disponíveis:</legend>
+                    <div id="available-days-checkboxes">
+                        <!-- Checkboxes for days will be populated by JS -->
+                    </div>
+                </fieldset>
+                
+                <fieldset>
+                    <legend>Horários Disponíveis:</legend>
+                    <div id="available-times-checkboxes">
+                        <!-- Checkboxes for times will be populated by JS -->
+                    </div>
+                </fieldset>
+                
+                <button type="submit">Adicionar Professor</button>
+            </form>
+            <p id="error-message" class="message error-message"></p>
+            <p id="success-message" class="message success-message"></p>
+        </section>
+
+        <section id="schedule-section">
+            <h2>Quadro de Horários</h2>
+            <button id="download-schedule-btn">Baixar Quadro como Imagem</button>
+            <div id="schedule-capture-area">
+                <h3 id="schedule-title-header"></h3>
+                <div id="schedule-table-container">
+                    <!-- Schedule table will be populated by JS -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Organiza JK</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

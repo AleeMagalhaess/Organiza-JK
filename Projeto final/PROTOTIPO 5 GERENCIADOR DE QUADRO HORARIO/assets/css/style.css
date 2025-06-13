@@ -1,0 +1,336 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f4f8;
+    color: #333;
+    background-image: url('../images/page_background.png');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+header {
+    background-color: #2979FF;
+    color: #ffffff;
+    padding: 1.2rem 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#header-icon {
+    width: 45px;
+    height: 45px;
+    margin-right: 12px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 500;
+}
+
+main {
+    max-width: 1200px;
+    margin: 25px auto;
+    padding: 25px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+section {
+    margin-bottom: 35px;
+    padding: 25px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+h2 {
+    color: #1C54B2;
+    border-bottom: 2px solid #BBDEFB;
+    padding-bottom: 12px;
+    margin-top: 0;
+    font-size: 1.6rem;
+}
+
+form div, form fieldset {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #1C54B2;
+}
+
+input[type="text"],
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 0.95rem;
+    background-color: #fff;
+}
+
+input[type="text"]:focus,
+select:focus {
+    border-color: #2979FF;
+    box-shadow: 0 0 0 0.2rem rgba(41, 121, 255, 0.25);
+}
+
+input:disabled {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+}
+
+fieldset {
+    border: 1px solid #BBDEFB;
+    border-radius: 5px;
+    padding: 18px;
+}
+
+legend {
+    font-weight: 600;
+    color: #1C54B2;
+    padding: 0 8px;
+    font-size: 1.1rem;
+}
+
+#available-days-checkboxes div,
+#available-times-checkboxes div {
+    display: inline-block;
+    margin-right: 18px;
+    margin-bottom: 8px;
+}
+
+#available-days-checkboxes label,
+#available-times-checkboxes label {
+    font-weight: normal;
+    margin-left: 6px;
+    color: #333;
+}
+
+button {
+    background-color: #2979FF;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    background-color: #1C54B2;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+#download-schedule-btn {
+    margin-bottom: 18px;
+    background-color: #03A9F4;
+}
+
+#download-schedule-btn:hover {
+    background-color: #0288D1;
+}
+
+#schedule-capture-area {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+#schedule-title-header {
+    text-align: center;
+    color: #0D47A1;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+#schedule-table-container {
+    min-height: 500px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    font-size: 0.9rem;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: white;
+}
+
+th, td {
+    border: 1px solid #64B5F6;
+    padding: 12px;
+    text-align: center;
+    min-width: 100px;
+}
+
+th {
+    background-color: #90CAF9;
+    color: #000;
+    font-weight: bold;
+}
+
+td.time-header {
+    font-weight: bold;
+    background-color: #90CAF9;
+    color: #000;
+    width: 120px;
+    vertical-align: middle;
+}
+
+td.class-slot {
+    background-color: #ffffff;
+    height: 70px;
+    vertical-align: middle;
+    padding: 8px;
+    text-align: center;
+}
+
+td.class-slot:not(.occupied) {
+    background-color: #f8f9fa;
+    border: 1px dashed #dee2e6;
+}
+
+td.class-slot.occupied {
+    color: #333;
+}
+
+.schedule-subject {
+    font-weight: bold;
+    font-size: 0.95em;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.schedule-teacher {
+    font-size: 0.8em;
+    color: #424242;
+    display: block;
+}
+
+td.break-slot, td.empty-break-slot {
+    background-color: #90CAF9;
+    font-style: italic;
+    font-weight: bold;
+    color: #000;
+    height: 30px;
+    vertical-align: middle;
+}
+
+td.unavailable-slot {
+    background-color: #eeeeee !important;
+    font-style: italic;
+    color: #9e9e9e;
+}
+
+.message {
+    padding: 12px;
+    margin-top: 12px;
+    border-radius: 5px;
+    display: none;
+    font-size: 0.95rem;
+}
+
+.error-message {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #e57373;
+}
+
+.success-message {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #81c784;
+}
+
+footer {
+    text-align: center;
+    margin-top: 35px;
+    padding: 18px;
+    background-color: #1C54B2;
+    color: #E3F2FD;
+    font-size: 0.9rem;
+}
+
+input[type="checkbox"] {
+    margin-right: 6px;
+    accent-color: #2979FF;
+    width: 15px;
+    height: 15px;
+    vertical-align: middle;
+}
+
+/* Temas */
+body.theme-50 th,
+body.theme-50 td.time-header,
+body.theme-50 td.break-slot,
+body.theme-50 td.empty-break-slot {
+    background-color: #90CAF9;
+    color: #000;
+}
+
+body.theme-40 th,
+body.theme-40 td.time-header,
+body.theme-40 td.break-slot,
+body.theme-40 td.empty-break-slot {
+    background-color: #FFA726;
+    color: #000;
+}
+
+body.theme-30 th,
+body.theme-30 td.time-header,
+body.theme-30 td.break-slot,
+body.theme-30 td.empty-break-slot {
+    background-color: #FFF176;
+    color: #000;
+}
+
+body.theme-20 th,
+body.theme-20 td.time-header,
+body.theme-20 td.break-slot,
+body.theme-20 td.empty-break-slot {
+    background-color: #81C784;
+    color: #000;
+}
+
+body.theme-10 th,
+body.theme-10 td.time-header,
+body.theme-10 td.break-slot,
+body.theme-10 td.empty-break-slot {
+    background-color: #E57373;
+    color: #000;
+}
+/* Aumentar fonte da matéria e professor */
+.schedule-subject {
+    font-size: 1.1rem;  /* Aumenta o tamanho da matéria */
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.schedule-teacher {
+    font-size: 1rem;    /* Aumenta o tamanho do professor */
+    color: #424242;
+}
